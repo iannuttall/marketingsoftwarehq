@@ -1,0 +1,235 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+{{ product1.name }} vs {{ product2.name }} - Pricing and Feature Comparison
+{% endblock %}
+
+{% block content %}
+{% filter markdown %}
+
+<h1>{{ product1.name }} vs {{ product2.name }}</h1>
+
+Compare the popular marketing software tools [{{ product1.name }}]( {{ url_for('product_review', product_slug=product1.slug) }} ) and [{{ product2.name }}]( {{ url_for('product_review', product_slug=product2.slug) }} ) side-by-side to see which one is right for your business, including similarities and differences in features, pricing, and more.
+
+This guide is completely data-driven and compares {{ product1.name }} vs {{ product2.name }} based on data collected from their websites, as well as other sources, to help you make your own decision about which fits better for your marketing automation needs.
+
+<!-- Comparison table -->
+<table>
+    <thead>
+        <tr>
+            <th>Feature</th>
+            <th>{{ product1.name }}</th>
+            <th>{{ product2.name }}</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Price</td>
+            <td>
+                {% if product1["highest price"] == -1 %}
+                ${{ product1["lowest price"]}}+ per {{ product1["billing period"]}}
+                {% else %}
+                ${{ product1["lowest price"]}} - ${{ product1["highest price"]}} per {{ product1["billing period"]}}
+                {% endif %}
+            </td>
+            <td>
+                {% if product2["highest price"] == -1 %}
+                ${{ product2["lowest price"]}}+ per {{ product2["billing period"]}}
+                {% else %}
+                ${{ product2["lowest price"]}} - ${{ product2["highest price"]}} per {{ product2["billing period"]}}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Free trial</td>
+            <td>{% if product1["free trial"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["free trial"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Transparent Pricing</td>
+            <td>{% if product1["transparent pricing"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["transparent pricing"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Target Audience</td>
+            <td>{{ product1["target audience"] }}</td>
+            <td>{{ product2["target audience"] }}</td>
+        </tr>
+        <tr>
+            <td>Email Funnels</td>
+            <td>{% if product1["funnel features"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["funnel features"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Webinars</td>
+            <td>{% if product1["webinar"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["webinar"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>CRM System</td>
+            <td>{% if product1["crm system"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["crm system"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Chatbot</td>
+            <td>{% if product1["chatbot"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["chatbot"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Video Hosting</td>
+            <td>{% if product1["video hosting"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["video hosting"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>SMS Messaging</td>
+            <td>{% if product1["sms messaging"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["sms messaging"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Email Marketing</td>
+            <td>{% if product1["email marketing"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["email marketing"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Online Courses</td>
+            <td>{% if product1["online course"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["online course"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Quiz Builder</td>
+            <td>{% if product1["quiz builder"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["quiz builder"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>Magazine Builder</td>
+            <td>{% if product1["magazine builder"] %}✅{% else %}❌{% endif %}</td>
+            <td>{% if product2["magazine builder"] %}✅{% else %}❌{% endif %}</td>
+        </tr>        
+    </tbody>
+</table>
+
+<!-- Comparison of other aspects -->
+
+## Pricing Comparison
+
+We briefly touched on the pricing of {{ product1.name }} and {{ product2.name }} in the features section, but let's take a closer look at the pricing options available for both products.
+
+{% if product1["highest price"] == -1 %}
+**Prices for {{ product1.name }} start at ${{ product1["lowest price"]}} per {{ product1["billing period"]}}. The highest price is not listed on their website and is only available if you contact them directly.**
+{% else %}
+{% if product1["billing period"] == "lifetime" %}
+**{{ product1.name }} is available for a one-time payment of between ${{ product1["lowest price"]}} and ${{ product1["highest price"]}}, depending on the features you need.**
+{% else %}
+**{{ product1.name }} is available for between ${{ product1["lowest price"]}} and ${{ product1["highest price"]}} per {{ product1["billing period"]}}.**
+{% endif %}
+{% endif %}
+
+On the other hand:
+
+{% if product2["highest price"] == -1 %}
+**Prices for {{ product2.name }} start at ${{ product2["lowest price"]}} per {{ product2["billing period"]}}. The highest price is not listed on their website and is only available if you contact them directly.**
+{% else %}
+{% if product2["billing period"] == "lifetime" %}
+**{{ product2.name }} is available for a one-time payment of between ${{ product2["lowest price"]}} and ${{ product2["highest price"]}}, depending on the features you need.**
+{% else %}
+**{{ product2.name }} is available for between ${{ product2["lowest price"]}} and ${{ product2["highest price"]}} per {{ product2["billing period"]}}.**
+{% endif %}
+{% endif %}
+
+So how does the pricing of these two products compare?
+
+The market average price for marketing software is ${{ product1["market_average"]|round|int }}, which means that {{ product1.name }} is {{ product1.percentage_difference|round|int }}% {{ product1.price_status }} and {{ product2.name }} is {{ product2.percentage_difference|round|int }}% {{ product2.price_status }}.
+
+{% if product1["billing period"] == "lifetime" or product2["billing period"] == "lifetime" %}
+Bear in mind though, that the market average is based on the lowest monthly price of each tool. Any product with a lifetime payment option means you only pay once for lifetime access.
+{% endif %}
+
+<!-- if lowest price of either product is less than market average -->
+{% if product1["lowest price"] < product1["market_average"] and product2["lowest price"] < product2["market_average"] %}
+If you are on a budget then both {{ product1.name }} and {{ product2.name }} are good options for you, as they are cheaper than the market average.
+{% elif product1["lowest price"] > product1["market_average"] and product2["lowest price"] > product2["market_average"] %}
+If you are on a budget then neither {{ product1.name }} nor {{ product2.name }} might be good options for you, as they are more expensive than most marketing software products.
+{% elif product1["lowest price"] < product1["market_average"] and product2["lowest price"] > product2["market_average"] %}
+If you are on a budget, {{ product1.name }} might be a good option for you as it is cheaper than the market average, while {{ product2.name }} is more expensive than the market average.
+{% else %}
+If you are on a budget, {{ product2.name }} might be a good option for you as it is cheaper than the market average, while {{ product1.name }} is more expensive than the market average.
+{% endif %}
+
+
+Check the features above and see if either {{ product1.name }} or {{ product2.name }} offers the features you need. Sometimes, a more expensive tool might be the right choice as it offers more features for your business or the customer support is better.
+
+
+## Transparent Pricing
+
+Transparent pricing is when a company clearly lists the prices of their products and services on their website. This is in contrast to companies that hide their pricing and only reveal it once you contact them.
+
+{% if product1["transparent pricing"] and product2["transparent pricing"] %}
+
+Both {{ product1.name }} and {{ product2.name }} have transparent pricing, which means that you can see the prices of their products and services before you contact them.
+
+{% elif not product1["transparent pricing"] and not product2["transparent pricing"] %}
+
+Neither {{ product1.name }} nor {{ product2.name }} have transparent pricing, which means that you cannot see the prices of their products and services before you contact them.
+
+{% elif product1["transparent pricing"] and not product2["transparent pricing"] %}
+
+{{ product1.name }} has transparent pricing, which means that you can see the prices of their products and services before you contact them. This is in contrast to {{ product2.name }}, which does not have transparent pricing.
+
+{% else %}
+
+{{ product2.name }} has transparent pricing, which means that you can see the prices of their products and services before you contact them. This is in contrast to {{ product1.name }}, which does not have transparent pricing.
+
+{% endif %}
+
+
+## Refund Policies Comparison
+
+Having an easy-to-find and understand refund policy is important for any business. It shows that the company stands behind their products and services and is willing to give you a refund if you are not satisfied with your purchase.
+
+{% if product1["refund policy"] and product2["refund policy"] %}
+
+Both {{ product1.name }} and {{ product2.name }} have refund policies, which we have summarized below:
+
+**{{ product1.name }} Refund Policy:**
+{{ product1["refund policy"] }}
+
+**{{ product2.name }} Refund Policy:**
+{{ product2["refund policy"] }}
+
+{% elif not product1["refund policy"] and not product2["refund policy"] %}
+
+Neither {{ product1.name }} nor {{ product2.name }} have a refund policy that we could find, which means that you may not be able to get a refund if you are not happy with your purchase.
+
+{% elif product1["refund policy"] and not product2["refund policy"] %}
+
+{{ product1.name }} has a refund policy, which we have summarized below:
+
+{{ product1["refund policy"] }}
+
+This is in contrast to {{ product2.name }}, which does not have a refund policy that we could find.
+
+{% else %}
+
+{{ product2.name }} has a refund policy, which we have summarized below:
+
+{{ product2["refund policy"] }}
+
+This is in contrast to {{ product1.name }}, which does not have a refund policy that we could find.
+
+{% endif %}
+
+## Conclusion
+
+We have collected a lot of information about both {{ product1.name }} and {{ product2.name }} in this comparison to help you make your own, informed, decision about which of these marketing software tools is the right one for you.
+
+{{ product1.name }} seems to be best suited for {{ product1["target audience"] }}, while {{ product2.name }} seems to be ideal for {{ product2["target audience"] }}. 
+
+You can use this data to compare {{ product1.name }} and {{ product2.name }} to other marketing software tools, and to assess how well each product meets your needs.
+
+If you are still unsure but are considering either {{ product1.name }} or {{ product2.name }}, we would recommend you research both products further by visiting their websites, checking customer reviews, and searching social media channels like Reddit to see what other people are saying about them.
+
+Hopefully, this comparison of {{ product1.name }} and {{ product2.name }} has helped you to learn more about what each product offers, how they compare to the market in general, and whether the features they offer are what you're looking for.
+
+
+{% endfilter %}
+{% endblock %}

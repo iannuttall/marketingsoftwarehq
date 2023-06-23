@@ -1,0 +1,257 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Review of {{ product.name }} (Based on Data)
+{% endblock %}
+
+{% block content %}
+{% filter markdown %}
+
+# Review of {{ product.name }} (Based on Data)
+
+{{product.introduction}}
+
+In this review, we'll be using data collected from {{ product.name }}'s website, as well as other sources, to help you decide if {{ product.name }} is the right marketing automation platform for your business.
+
+## Target Audience
+
+{{ product["target audience detailed"] }}
+
+So, how do you know if {{ product.name }} is right for you?
+
+{{ product["best for"] }}
+
+## {{ product.name }} Features
+
+The table below will give you an overview of the features offered by {{ product.name }} so that you can very quickly see if the features you need for your business are available.
+
+<table>
+    <thead>
+        <tr>
+            <td></td>
+            <td>Feature</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Price</td>
+            <td>
+                {% if product["highest price"] == -1 %}
+                ${{ product["lowest price"]}}+ {{ product["billing period"]}}
+                {% else %}
+                ${{ product["lowest price"]}} - ${{ product["highest price"]}}
+                {% if product["billing period"] != "lifetime" %}
+                a {{ product["billing period"]}}
+                {% else %}
+                {{ product["billing period"]}}
+                {% endif %}
+                {% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Free trial</td>
+            <td>
+                {% if product["free trial"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Transparent Pricing</td>
+            <td>
+                {% if product["transparent pricing"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Target Audience</td>
+            <td>
+                {{ product["target audience"] }}
+            </td>
+        </tr>
+        <tr>
+            <td>Email funnels</td>
+            <td>
+                {% if product["funnel features"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Webinars</td>
+            <td>
+                {% if product["webinar"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>CRM system</td>
+            <td>
+                {% if product["crm system"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Chatbot</td>
+            <td>
+                {% if product["chatbot"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Video Hosting</td>
+            <td>
+                {% if product["video hosting"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>SMS Messaging</td>
+            <td>
+                {% if product["sms messaging"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Email Marketing</td>
+            <td>
+                {% if product["email marketing"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Online Courses</td>
+            <td>
+                {% if product["online course"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Quiz Builder</td>
+            <td>
+                {% if product["quiz builder"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>Magazine Builder</td>
+            <td>
+                {% if product["magazine builder"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+## {{ product.name }} Pricing
+
+We briefly touched on {{ product.name }}'s pricing in the features section, but let's take a closer look at the pricing options available.
+
+{% if product["highest price"] == -1 %}
+
+**Prices for {{ product.name }} start at ${{ product["lowest price"]}} per {{ product["billing period"]}}. The highest price is not listed on their website and is only available if you contact them directly.**
+
+{% else %}
+
+{% if product["billing period"] == "lifetime" %}
+
+**{{ product.name }} is available for a one-time payment of between ${{ product["lowest price"]}} and ${{ product["highest price"]}}, depending on the features you need.**
+
+{% else %}
+
+**{{ product.name }} is available for between ${{ product["lowest price"]}} and ${{ product["highest price"]}} per {{ product["billing period"]}}.**
+
+{% endif %}
+
+{% endif %}
+
+So how does the pricing of {{ product.name }} compare to the {{ product.unique_services_count }} marketing software tools we analyzed?
+
+The market average price for marketing software is ${{ product["market_average"]|round|int }}, which means that {{ product.name }} is {{ product.percentage_difference|round|int }}% {{ product.price_status }}.
+
+{% if product["billing period"] == "lifetime" %}
+
+Bear in mind though, that the market average is based on the lowest monthly price of each tool. {{ product.name }} is a one-time payment, so you will only pay once for lifetime access.
+
+{% endif %}
+
+<!-- if lowest price is less than market average -->
+{% if product["lowest price"] < product["market_average"] %}
+
+If you are on a budget then {{ product.name }} might be a good option for you, as it is cheaper than the market average.
+
+<!-- if lowest price is more than market average -->
+{% else %}
+
+If you are on a budget then {{ product.name }} might not be a good option for you, as it is more expensive than most marketing software products.
+
+Check the features above and see if {{ product.name }} offers the features you. Sometimes, a more expensive tool might be the right choice as it offers more features for your business or the customer support is better.
+
+{% endif %}
+
+## Transparent Pricing
+
+Transparent pricing is when a company clearly lists the prices of their products and services on their website. This is in contrast to companies that hide their pricing and only reveal it once you contact them.
+
+{% if product["transparent pricing"] %}
+
+{{ product.name }} has transparent pricing, which means that you can see the prices of their products and services before you contact them.
+
+{% else %}
+
+{{ product.name }} does not have transparent pricing, which means that you cannot see the prices of their products and services before you contact them.
+
+{% endif %}
+
+## Refund Policy for {{ product.name }}
+
+Having an easy-to-find and understand refund policy is important for any business. It shows that the company stands behind their products and services and is willing to give you a refund if you are not satisfied with your purchase.
+
+{% if product["refund policy"] %}
+
+{{ product.name }} has a refund policy, which we have summarized below.
+
+{{ product["refund policy"] }}
+
+{% else %}
+
+{{ product.name }} does not have a refund policy that we could find, which means that you may not be able to get a refund if you are not happy with your purchase.
+
+{% endif %}
+
+## Contacting {{ product.name }}
+
+<!-- we have the following columns email support	email address	email support hours	phone support	phone support hours	live chat  -->
+
+{% if product["email support"] or product["phone support"] or product["live chat"] %}
+
+You can contact {{ product.name }} using the following methods:
+
+{% if product["email support"] %}
+- Email support {% if product["email address"] %}({{ product["email address"] }}){% endif %} {% if product["email support hours"] %} - {{ product["email support hours"] }}{% endif %}
+{% endif %}
+
+{% if product["phone support"] %}
+- Phone support {% if product["phone support hours"] %} - {{ product["phone support hours"] }}{% endif %}
+{% endif %}
+
+{% if product["live chat"] %}
+- Live chat
+{% endif %}
+
+{% else %}
+
+We could not find any contact information for {{ product.name }}.
+
+{% endif %}
+
+## Conclusion
+
+We have collected a lot of information about {{ product.name }} in this review to help you make your own, informed, decision about whether this is the right marketing software for you.
+
+You can use this data to compare {{ product.name }} to other marketing software tools and to assess how well the product meets your needs.
+
+If you are still unsure but are considering {{ product.name }}, we would recommend you research them further by visiting their website, checking customer reviews, and searching social media channels like Reddit to see what other people are saying about them.
+
+Hopefully, this review of {{product.name}} has helped you to learn more about what they offer, how they compare to the market in general, and whether the features they offer are what you're looking for.
+
+## Alternatives to {{ product.name }}
+
+If you are looking for alternatives to {{ product.name }}, we have compiled a list comparisons to the most popular competitors below.
+
+<ul>
+    {% for url, link_text in comparison_links %}
+      <li><a href="{{ url }}">{{ link_text }}</a></li>
+    {% endfor %}
+  </ul>
+  
+
+{% endfilter %}
+{% endblock %}
+

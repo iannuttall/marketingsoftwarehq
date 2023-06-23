@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Automated Marketing Software Reviews
+{% endblock %}
+
+{% block content %}
+<h1>Automated Marketing Software Reviews</h1>
+<p>We help internet business operators and entrepreneurs to find and compare the automated marketing platforms that can help you scale your business. All backed by carefully research data.</p>
+
+<h2>Product Reviews</h2>
+<p>We have researched the top {{review_links|count}} most commonly used marketing software tools to help you find the perfect product for your business needs.</p>
+<ul>
+    {% for url, text in review_links %}
+    <li><a href="{{ url }}">{{ text }} Review</a></li>
+    {% endfor %}
+</ul>
+
+<h2>Product Comparisons</h2>
+<p>Have you already narrowed it down to two possible choices? Here, we pit each product against each other so you can compare, at-a-glance, how they stack up against each other.</p>
+<ul>
+    {% for url, text in compare_links %}
+    <li><a href="{{ url }}">{{ text }}</a></li>
+    {% endfor %}
+</ul>
+{% endblock %}
