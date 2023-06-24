@@ -180,21 +180,21 @@ def sitemap():
     for rule in app.url_map.iter_rules():
         if "GET" in rule.methods and len(rule.arguments) == 0 and rule.rule != '/sitemap.xml':
             pages.append(
-                [url_for(rule.endpoint, _external=True), datetime.now().isoformat()]
+                [url_for(rule.endpoint, _external=True), datetime.now().strftime('%Y-%m-%d')]
             )
 
     # product review pages
     products = load_products()
     for _, row in products.iterrows():
         url = url_for('product_review', product_slug=row['slug'], _external=True)
-        modified_time = datetime.now().isoformat()  # Assuming the page was last modified now
+        modified_time = datetime.now().strftime('%Y-%m-%d')  # Assuming the page was last modified now
         pages.append([url, modified_time])
 
     # product comparison pages
     for i, row1 in products.iterrows():
         for _, row2 in products.iloc[i + 1:].iterrows():
             url = url_for('compare_products', product_slug_1=row1['slug'], product_slug_2=row2['slug'], _external=True)
-            modified_time = datetime.now().isoformat()  # Assuming the page was last modified now
+            modified_time = datetime.now().strftime('%Y-%m-%d')  # Assuming the page was last modified now
             pages.append([url, modified_time])
 
     sitemap_xml = render_template('sitemap_template.xml', pages=pages)
