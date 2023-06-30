@@ -11,7 +11,7 @@ Review of {{ product.name }} (Based on Data)
 
 {{product.introduction}}
 
-In this review, we'll be using data collected from {{ product.name }}'s website, as well as other sources, to help you decide if {{ product.name }} is the right marketing automation platform for your business.
+In this review, we'll be using data collected from <a href="{{product.url}}" target="_blank">{{ product.name }}</a>'s website, as well as other sources, to help you decide if {{ product.name }} is the right marketing automation platform for your business.
 
 ## Target Audience
 
@@ -124,6 +124,12 @@ The table below will give you an overview of the features offered by {{ product.
             <td>Magazine Builder</td>
             <td>
                 {% if product["magazine builder"] %}✅{% else %}❌{% endif %}
+            </td>
+        </tr>
+        <tr>
+            <td>More details</td>
+            <td>
+                <a role="button" href="{{product.url}}" target="_blank">Visit {{product.name}}</a>
             </td>
         </tr>
     </tbody>

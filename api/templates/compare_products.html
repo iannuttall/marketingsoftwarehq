@@ -104,6 +104,11 @@ This guide is completely data-driven and compares {{ product1.name }} vs {{ prod
             <td>Magazine Builder</td>
             <td>{% if product1["magazine builder"] %}✅{% else %}❌{% endif %}</td>
             <td>{% if product2["magazine builder"] %}✅{% else %}❌{% endif %}</td>
+        </tr>
+        <tr>
+            <td>More Details</td>
+            <td><a role="button" href="{{ product1.url }}" target="_blank">Visit {{ product1.name }}</a></td>
+            <td><a role="button" href="{{ product2.url }}" target="_blank">Visit {{ product2.name }}</a></td>
         </tr>        
     </tbody>
 </table>
