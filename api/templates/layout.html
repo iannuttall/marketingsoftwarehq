@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='images/icon.png', _external=True) }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@next/css/pico.min.css" />
     <title>{% block title %}{% endblock %}</title>
     <!-- Add other SEO meta tags here -->
